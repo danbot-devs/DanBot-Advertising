@@ -1,7 +1,4 @@
-# Dependency directories
 node_modules/
-jspm_packages/
-
-#JSON's
 config.json
 count.json
+messagelogs/
