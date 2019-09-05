@@ -4,6 +4,7 @@ const client = new Discord.Client()
 const fs = require("fs");
 const moment = require("moment");
 global.config = require("./config.json")
+global.prefixtouse = config.prefix
 
 //Captcha Stuff
 const captcha = require('svg-captcha');
@@ -132,25 +133,25 @@ let count = JSON.parse(fs.readFileSync("./count.json"));
 client.on("message", async (message) => {
     if (message.author.bot) return;
     if (message.channel.type === 'dm') return;
-    if (message.channel.id === '614980269350584346') return count.ads ++; //Premium servers
-    if (message.channel.id === '614980270877311026') return count.ads ++; //Paid ad promotions
-    if (message.channel.id === '614980272961749009') return count.ads ++; //Nitro boosted servers
-    if (message.channel.id === '614980274341675092') return count.ads ++; //Special discord servers
-    if (message.channel.id === '614980296248655884') return count.ads ++; //Global emoji servers
-    if (message.channel.id === '614980297884303389') return count.ads ++; //Bumped servers 1
-    if (message.channel.id === '614980299821940766') return count.ads ++; //Bumped servers 2
-    if (message.channel.id === '614980301562839050') return count.ads ++; //Community servers
-    if (message.channel.id === '614980303223652372') return count.ads ++; //Gaming servers
-    if (message.channel.id === '614980304960094222') return count.ads ++; //Listed advertising servers
-    if (message.channel.id === '614980306637946895') return count.ads ++; //Economy servers
-    if (message.channel.id === '614980307791380489') return count.ads ++; //Social servers
-    if (message.channel.id === '614980310005842124') return count.ads ++; //Fun servers
-    if (message.channel.id === '614980312207720458') return count.ads ++; //Anime servers
-    if (message.channel.id === '614980314195951702') return count.ads ++; //NSFW servers
-    if (message.channel.id === '614980315970011138') return count.ads ++; //Music servers
-    if (message.channel.id === '614980317882744852') return count.ads ++; //Meme servers
-    if (message.channel.id === '614980319506071553') return count.ads ++; //Discord bot servers
-    if (message.channel.id === '614980321162559535') return count.ads ++; //Other discord servers
+    if (message.channel.id === '614980269350584346') return count.ps ++, count.countall ++; //Premium servers
+    if (message.channel.id === '614980270877311026') return count.pap ++, count.countall ++; //Paid ad promotions
+    if (message.channel.id === '614980272961749009') return count.nbs ++, count.countall ++; //Nitro boosted servers
+    if (message.channel.id === '614980274341675092') return count.sds ++, count.countall ++; //Special discord servers
+    if (message.channel.id === '614980296248655884') return count.ges ++, count.countall ++; //Global emoji servers
+    if (message.channel.id === '614980297884303389') return count.bs1 ++, count.countall ++; //Bumped servers 1
+    if (message.channel.id === '614980299821940766') return count.bs2 ++, count.countall ++; //Bumped servers 2
+    if (message.channel.id === '614980301562839050') return count.cs ++, count.countall ++; //Community servers
+    if (message.channel.id === '614980303223652372') return count.gs ++, count.countall ++; //Gaming servers
+    if (message.channel.id === '614980304960094222') return count.las ++, count.countall ++; //Listed advertising servers
+    if (message.channel.id === '614980306637946895') return count.es ++, count.countall ++; //Economy servers
+    if (message.channel.id === '614980307791380489') return count.ss ++, count.countall ++; //Social servers
+    if (message.channel.id === '614980310005842124') return count.fs ++, count.countall ++; //Fun servers
+    if (message.channel.id === '614980312207720458') return count.as ++, count.countall ++; //Anime servers
+    if (message.channel.id === '614980314195951702') return count.nsfws ++, count.countall ++; //NSFW servers
+    if (message.channel.id === '614980315970011138') return count.ms ++, count.countall ++; //Music servers
+    if (message.channel.id === '614980317882744852') return count.memes ++, count.countall ++; //Meme servers
+    if (message.channel.id === '614980319506071553') return count.dbs ++, count.countall ++; //Discord bot servers
+    if (message.channel.id === '614980321162559535') return count.ods ++, count.countall ++; //Other discord servers
     //if (!modlog) return;
       const prefix = config.prefix;
       const args = message.content.slice(prefix.length).trim().split(/ +/g);
