@@ -16,13 +16,6 @@ client.on('guildMemberAdd', async member => {
   .addField(`Welcome ${member.user.username}!`, `Please check out <#614980230318391329>`)
   .setColor("RANDOM");
 
-
-  var emptyString = "";
-  var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_-1234567890";
-  while (emptyString.length < 5) {
-    emptyString += alphabet[Math.floor(Math.random() * alphabet.length)];
-  } 
-
     let svg = captcha.create({ noise: 0, size: 5, background: '#7289DA', ignoreChars: 'f0o1il' });
     let pngBuffer = await svg2png(svg.data);
   
