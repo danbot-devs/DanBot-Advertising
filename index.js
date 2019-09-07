@@ -12,10 +12,6 @@ const svg2png = require('svg2png');
 
 client.on('guildMemberAdd', async member => {
   const vcm = member.guild.channels.find(c => c.id === "614980239725953046");
-  let embed = new Discord.RichEmbed()
-  .addField(`Welcome ${member.user.username}!`, `Please check out <#614980230318391329>`)
-  .setColor("RANDOM");
-
     let svg = captcha.create({ noise: 0, size: 5, background: '#7289DA', ignoreChars: 'f0o1il' });
     let pngBuffer = await svg2png(svg.data);
   
@@ -46,7 +42,6 @@ client.on('guildMemberAdd', async member => {
         const autorole2 = member.guild.roles.find(r => r.name === "Members");
         const autorole3 = member.guild.roles.find(r => r.name === "Not Verified");
         const welcome = member.guild.channels.find(c => c.name === "server verification");
-        welcome.send(embed);
         member.addRole(autorole)
         member.addRole(autorole2)
         member.removeRole(autorole3)
@@ -130,9 +125,6 @@ client.on("message", async (message) => {
     if (message.channel.id === '614980270877311026') return count.pap ++, count.countall ++; //Paid ad promotions
     if (message.channel.id === '614980272961749009') return count.nbs ++, count.countall ++; //Nitro boosted servers
     if (message.channel.id === '614980274341675092') return count.sds ++, count.countall ++; //Special discord servers
-    if (message.channel.id === '614980296248655884') return count.ges ++, count.countall ++; //Global emoji servers
-    if (message.channel.id === '614980297884303389') return count.bs1 ++, count.countall ++; //Bumped servers 1
-    if (message.channel.id === '614980299821940766') return count.bs2 ++, count.countall ++; //Bumped servers 2
     if (message.channel.id === '614980301562839050') return count.cs ++, count.countall ++; //Community servers
     if (message.channel.id === '614980303223652372') return count.gs ++, count.countall ++; //Gaming servers
     if (message.channel.id === '614980304960094222') return count.las ++, count.countall ++; //Listed advertising servers
