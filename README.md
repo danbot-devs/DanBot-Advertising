@@ -1,5 +1,5 @@
 # DanBot Advertising
-A discord bot for my DanBot Advertising server, This bot can do Moderation, Invite link checking in channels, Captcha for new users and a lot more
+A discord bot for my DanBot Advertising server, This bot can do Moderation, Invite link checking in channels, Captcha for new users, message logger (to txt file and can download using the logs command) and a lot more
 ## Getting Started
 These instructions will get you a copy of the project up and running on your machine.
 
