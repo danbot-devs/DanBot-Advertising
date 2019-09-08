@@ -7,5 +7,7 @@
     "ownerID": "Owner id",
     "prefix": "DBA!",
     "invite": "Server invite for captcha fail",
-    "staffrole": "Staff"
+    "staffrole": "Staff",
+    "logchannel": "logs",
+    "invitechannel": "invites"
 }
