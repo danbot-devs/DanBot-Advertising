@@ -1,0 +1,11 @@
+{
+    "token": "TOKEN",
+    "twitter_consumer_key": "twitter api consumer key",
+    "twitter_consumer_secret": "twitter api consumer secret",
+    "twitter_access_token": "twitter api access token",
+    "twitter_access_token_secret": "twitter api access token secret",
+    "ownerID": "Owner id",
+    "prefix": "DBA!",
+    "invite": "Server invite for captcha fail",
+    "staffrole": "Staff"
+}
