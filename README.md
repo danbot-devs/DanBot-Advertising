@@ -20,7 +20,8 @@ npm i discord.js fs moment svg-captcha svg2png child_process os systeminformatio
     "prefix": "DBA!",
     "invite": "Server invite for captcha fail",
     "staffrole": "Staff",
-    "logchannel": "logs"
+    "logchannel": "logs",
+    "invitechannel": "invites"
 }
 ```
 
