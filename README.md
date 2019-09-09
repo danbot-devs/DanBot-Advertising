@@ -5,7 +5,7 @@ These instructions will get you a copy of the project up and running on your mac
 
 ### Installing requirements 
 ```
-npm i discord.js fs moment svg-captcha svg2png child_process os systeminformation prettysize table array-sort twit chart-constructor moment-duration-format 
+npm i discord.js fs moment svg-captcha svg2png child_process os systeminformation prettysize table array-sort twit chart-constructor moment-duration-format get-folder-size
 ```
 
 ### Setting up config
