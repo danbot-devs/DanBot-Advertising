@@ -38,6 +38,7 @@ After you followed everything above you can now do `node .` in the directory of 
 
 * **danielpmc** - *Main Dev*
 * **Vexcon1** - *Dev*
+
 See also the list of [contributors](https://github.com/danbot-devs/DanBot-Advertising/contributors) who participated in this project.
 
 ## License
