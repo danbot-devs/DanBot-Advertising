@@ -5,7 +5,7 @@ These instructions will get you a copy of the project up and running on your mac
 
 ### Installing requirements 
 ```
-npm i discord.js fs moment svg-captcha svg2png child_process os systeminformation prettysize table array-sort twit chart-constructor moment-duration-format get-folder-size
+npm i discord.js fs moment svg-captcha svg2png child_process os systeminformation prettysize table array-sort twit chart-constructor moment-duration-format get-folder-size canvas
 ```
 
 ### Setting up config
@@ -37,7 +37,7 @@ After you followed everything above you can now do `node .` in the directory of 
 ## Authors
 
 * **danielpmc** - *Main Dev*
-
+* **Vexcon1** - *Dev*
 See also the list of [contributors](https://github.com/danbot-devs/DanBot-Advertising/contributors) who participated in this project.
 
 ## License
