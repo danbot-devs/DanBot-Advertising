@@ -26,7 +26,8 @@ npm i discord.js fs moment svg-captcha svg2png child_process os systeminformatio
     "invite10": "Role ID For a role called `invite 10+`",
     "invite25": "Role ID For a role called `invite 25+`",
     "invite50": "Role ID For a role called `invite 50+`",
-    "inviterewmsg": "Channel ID for channel where invite reward messages go when a user hits x invites"
+    "inviterewmsg": "Channel ID for channel where invite reward messages go when a user hits x invites",
+    "commandlogs": "614980334492319764"
 }
 ```
 
