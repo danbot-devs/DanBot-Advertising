@@ -27,7 +27,9 @@ let casenumber = JSON.parse(fs.readFileSync("./casenumber.json"));
     .addField("User", user.user.tag + " (ID: " + user.user.id + ")")
     .addField("Reason", reason, true)
     .setFooter("Time used: " + message.createdAt.toDateString())
-    client.channels.get("614980325189353483").send({embed});
+    let logs = message.guild.channels.find(channel => channel.name == config.logchannel);
+    if (!logs) return message.channel.send("No logs channel. Did you make one and update config.json?");
+    client.channels.get(logs.id).send({embed});
     casenumber.casenumber ++;
       }
       fs.writeFile(`./casenumber.json`, JSON.stringify(casenumber), (err) => {

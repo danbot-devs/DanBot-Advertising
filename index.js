@@ -94,7 +94,7 @@ client.on('ready', () => {
       invites[member.guild.id] = guildInvites;
       const invite = guildInvites.find(i => ei.get(i.code).uses < i.uses);
       const inviter = client.users.get(invite.inviter.id);
-      const logChannel = member.guild.channels.find(channel => channel.name === "invites");
+      const logChannel = member.guild.channels.find(channel => channel.name === config.invitechannel);
       logChannel.send(`${member.user.tag} (ID: ${member.user.id}) joined using invite code ` + "`" + invite.code + "`" + ` from ${inviter.tag} (ID: ${inviter.id}). Invite code has been used ${invite.uses}`);
       const invite5 = member.guild.roles.find(role => role.id === "614980191881658388");
       const invite10 = member.guild.roles.find(role => role.id === "614980191101386770");
@@ -147,7 +147,7 @@ client.on("message", async (message) => {
   
     if (invitecheck.some(word => message.content.toLowerCase().includes(word))) {
     message.delete()
-    let modlog = message.guild.channels.find(channel => channel.name == "logs");
+    let modlog = message.guild.channels.find(channel => channel.name == config.logchannel);
     const embed = new Discord.RichEmbed()
       .setColor(0x00A2E8)
       .setTitle("Action: Auto Moderation")
