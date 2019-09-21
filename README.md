@@ -34,11 +34,11 @@ npm i discord.js fs moment svg-captcha svg2png child_process os systeminformatio
 ## Running the bot
 After you followed everything above you can now do `node .` in the directory of the bot and it should start :)
 
-## Users are permitted to...
-- ... add additional code as long as they do not redistribute.
-- ... study the code and how the code is built for educational purposes.
-- ... reverse engineer the code in any way they want as long as they do not distribute the fragmented code.
-- ... take snippets of the code to use as long as they give due credit.
+## Users are permitted to
+- add additional code as long as they do not redistribute.
+- study the code and how the code is built for educational purposes.
+- reverse engineer the code in any way they want as long as they do not distribute the fragmented code.
+- take snippets of the code to use as long as they give due credit.
 
 ## Authors
 
