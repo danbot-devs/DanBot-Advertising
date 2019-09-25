@@ -1,0 +1,37 @@
+{
+  "name": "danbotadvertising",
+  "version": "1.0.0",
+  "description": "A discord bot for my DanBot Advertising server, This bot can do Moderation, Invite link checking in channels, Captcha for new users, message logger (to txt file and can download using the logs command) and a lot more",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danbot-devs/DanBot-Advertising.git"
+  },
+  "author": "danielpmc",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/danbot-devs/DanBot-Advertising/issues"
+  },
+  "homepage": "https://github.com/danbot-devs/DanBot-Advertising#readme",
+  "dependencies": {
+    "array-sort": "^1.0.0",
+    "canvas": "^2.6.0",
+    "chart-constructor": "^0.7.4",
+    "child_process": "^1.0.2",
+    "discord.js": "^11.5.1",
+    "fs": "0.0.1-security",
+    "get-folder-size": "^2.0.1",
+    "moment": "^2.24.0",
+    "moment-duration-format": "^2.3.2",
+    "os": "^0.1.1",
+    "prettysize": "^2.0.0",
+    "svg-captcha": "^1.4.0",
+    "svg2png": "^4.1.1",
+    "systeminformation": "^4.14.8",
+    "table": "^5.4.6",
+    "twit": "^2.2.11"
+  }
+}
