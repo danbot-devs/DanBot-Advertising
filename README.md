@@ -50,3 +50,6 @@ See also the list of [contributors](https://github.com/danbot-devs/DanBot-Advert
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
+
+## Misc
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/6388d54032574f2a94e97589ed229648)](https://www.codacy.com/manual/danielpmc/DanBot-Advertising?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=danbot-devs/DanBot-Advertising&amp;utm_campaign=Badge_Grade)
