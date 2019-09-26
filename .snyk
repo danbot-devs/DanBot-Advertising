@@ -1,0 +1,26 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.13.5
+ignore: {}
+# patches apply the minimum changes required to fix a vulnerability
+patch:
+  'npm:debug:20170905':
+    - chart-constructor > node-export-server > body-parser > debug:
+        patched: '2019-09-26T17:15:09.178Z'
+  'npm:hoek:20180212':
+    - chart-constructor > node-export-server > phantomjs-prebuilt > request > hawk > hoek:
+        patched: '2019-09-26T17:15:09.178Z'
+    - chart-constructor > node-export-server > phantomjs-prebuilt > request > hawk > boom > hoek:
+        patched: '2019-09-26T17:15:09.178Z'
+    - chart-constructor > node-export-server > phantomjs-prebuilt > request > hawk > sntp > hoek:
+        patched: '2019-09-26T17:15:09.178Z'
+    - chart-constructor > node-export-server > phantomjs-prebuilt > request > hawk > cryptiles > boom > hoek:
+        patched: '2019-09-26T17:15:09.178Z'
+  'npm:ms:20170412':
+    - chart-constructor > node-export-server > body-parser > debug > ms:
+        patched: '2019-09-26T17:15:09.178Z'
+  'npm:qs:20170213':
+    - chart-constructor > node-export-server > body-parser > qs:
+        patched: '2019-09-26T17:15:09.178Z'
+  'npm:tunnel-agent:20170305':
+    - chart-constructor > node-export-server > phantomjs-prebuilt > request > tunnel-agent:
+        patched: '2019-09-26T17:15:09.178Z'

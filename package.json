@@ -4,7 +4,9 @@
   "description": "A discord bot for my DanBot Advertising server, This bot can do Moderation, Invite link checking in channels, Captcha for new users, message logger (to txt file and can download using the logs command) and a lot more",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "repository": {
     "type": "git",
@@ -32,6 +34,8 @@
     "svg2png": "^4.1.1",
     "systeminformation": "^4.14.8",
     "table": "^5.4.6",
-    "twit": "^2.2.11"
-  }
+    "twit": "^2.2.11",
+    "snyk": "^1.228.5"
+  },
+  "snyk": true
 }
