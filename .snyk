@@ -1,0 +1,17 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.13.5
+ignore: {}
+# patches apply the minimum changes required to fix a vulnerability
+patch:
+  'npm:hoek:20180212':
+    - svg2png > phantomjs-prebuilt > request > hawk > hoek:
+        patched: '2019-10-01T19:41:03.370Z'
+    - svg2png > phantomjs-prebuilt > request > hawk > boom > hoek:
+        patched: '2019-10-01T19:41:03.370Z'
+    - svg2png > phantomjs-prebuilt > request > hawk > sntp > hoek:
+        patched: '2019-10-01T19:41:03.370Z'
+    - svg2png > phantomjs-prebuilt > request > hawk > cryptiles > boom > hoek:
+        patched: '2019-10-01T19:41:03.370Z'
+  'npm:tunnel-agent:20170305':
+    - svg2png > phantomjs-prebuilt > request > tunnel-agent:
+        patched: '2019-10-01T19:41:03.370Z'
