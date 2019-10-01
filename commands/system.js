@@ -1,4 +1,3 @@
-const Discord = require("discord.js");
 const os = require('os');
 const si = require('systeminformation');
 const pretty = require('prettysize');

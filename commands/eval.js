@@ -1,5 +1,3 @@
-const fs = require('fs');
-const Discord = require('discord.js');
 const execSync = require('child_process').execSync; 
 
 exports.run = async(client, message) => {

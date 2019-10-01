@@ -1,6 +1,3 @@
-const Discord = require("discord.js");
-const bot = new Discord.Client();
-const fs = require('fs');
 exports.run = (client, message, args) => {
 let casenumber = JSON.parse(fs.readFileSync("./casenumber.json"));
   const usage = new Discord.RichEmbed()

@@ -1,6 +1,4 @@
 
-    const Discord = require("discord.js");
-    const bot = new Discord.Client();
     exports.run = (client, message, args) => { 
          const embed10 = new Discord.RichEmbed()
             .setColor("RANDOM")

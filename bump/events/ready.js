@@ -11,31 +11,33 @@ console.log(`Started ${client.user.username} at ${timestamp}!`)
 
 fs.readdir("./commands/", (err, files) => {
     if (err) return console.log(err);
-    getSize("./", (err, size) => {
 let startEmbed = new Discord.RichEmbed()
 .setTitle(`${client.user.username} Started!`)
 .setColor("#53f23e")
 .addField("__**Time:**__", timestamp, true)
 .addField("__**Total Members:**__", client.guilds.reduce((p, c) => p + c.memberCount, 0), true)
+.addField("__**Total Guilds:**__", `${client.guilds.size}`, true)
 .addField("__**Total Channels:**__", client.channels.size, true)
 .addField("__**Commands:**__", files.length, true)
-.addField("__**Directory Size:**__", ((size / 1024 / 1024).toFixed(2) + ' MB'), true)
 client.channels.get(config.commandlogs).send(startEmbed);
-})
 })
 
 //Auto Activities List
+setInterval(() => {
 const activities = [
     {
         "text": `over ${client.guilds.reduce((p, c) => p + c.memberCount, 0)} members`,
         "type": "WATCHING"
     },
     {
-        "text": "with moderation in DBA",
+        "text": "with auto advertising in DBA",
+        "type": "PLAYING"
+    },
+    {
+        "text": `wtih advertising in ${client.guilds.size} servers`,
         "type": "PLAYING"
     }
 ];
-setInterval(() => {
     client.user.setStatus('online')
     const activity = activities[Math.floor(Math.random() * activities.length)];
     client.user.setActivity(activity.text, { type: activity.type }); 

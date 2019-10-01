@@ -1,81 +1,22 @@
+//https://discordapp.com/oauth2/authorize?client_id=616585101266124802&scope=bot&permissions=60481
+
 //Conts to make bot work
-const Discord = require("discord.js");
+global.Discord = require("discord.js");
 const client = new Discord.Client()
-const fs = require("fs");
+global.fs = require("fs");
 const moment = require("moment");
 global.config = require("./config.json")
 global.prefixtouse = config.prefix
 
-//Captcha Stuff
-const captcha = require('svg-captcha');
-const svg2png = require('svg2png');
-
-client.on('guildMemberAdd', async member => {
-  const vcm = member.guild.channels.find(c => c.id === "614980239725953046");
-    let svg = captcha.create({ noise: 0, size: 5, background: '#7289DA', ignoreChars: 'f0o1il' });
-    let pngBuffer = await svg2png(svg.data);
-  
-
-  const filter2 = m => m.author.id === member.id && m.channel.id === "614980239725953046";
-  vcm.send(`<@${member.id}>`, {
-    embed: new Discord.RichEmbed()
-    .setDescription("Hi! This is a captcha to stop raid bots joining. Please type what you see in the captcha below. You have **2** minutes to do this or you will be kicked!")
-    .addField('Your Captcha:', '_ _')
-    .attachFiles([{ attachment: pngBuffer, name: 'captcha.png' }])
-    .setImage('attachment://captcha.png')
-    .setColor("RED")
-  }).then((message2) => {
-    message2.channel.awaitMessages(filter2, {
-        max: 1,
-        time: 120000,
-        errors: ['time'],
-    }).then(async (collected1) => {
-      collected1.delete()
-      message2.delete()
-      message2.channel.fetchMessages({
-        limit: "5",
-       }).then((messages) => {
-        message2.channel.bulkDelete(messages, true).catch(error => console.log(error.stack));
-       })
-      if (collected1.first().content === svg.text) {
-        const autorole = member.guild.roles.find(r => r.name === "Advertiser");
-        const autorole2 = member.guild.roles.find(r => r.name === "Members");
-        const autorole3 = member.guild.roles.find(r => r.name === "Not Verified");
-        const welcome = member.guild.channels.find(c => c.name === "server verification");
-        member.addRole(autorole)
-        member.addRole(autorole2)
-        member.removeRole(autorole3)
-} else {
-member.send("You failed the captcha! Want another go? " + config.invite)
-setTimeout(async () => {
-  await member.kick("Failed the captcha in 2minutes")
-}, 3000);
-}
-  }).catch(async (err) => {
-    if (member.roles.some(r=>["Advertiser"].includes(r.name))) return;
-message2.delete()
-message2.channel.fetchMessages({
-  limit: "5",
- }).then((messages) => {
-  message2.channel.bulkDelete(messages, true).catch(error => console.log(error.stack));
- })
-member.send("You failed the captcha! Want another go? " + config.invite)
-setTimeout(async () => {
- member.kick("Failed the captcha in 2minutes")
-}, 3000);
-})
-});
-})
-
 //Message logger
 client.on("message", async message => {
-global.logger = fs.createWriteStream('messagelogs/'+ message.author.id + '.txt', {
+global.logger = fs.createWriteStream('messagelogs/'+ message.guild.id + "/" + message.author.id + '.txt', {
   flags: 'a' 
 });
-const timestamp = `${moment().format("YYYY-MM-DD HH:mm:ss")}`;
+global.timestamp = `${moment().format("YYYY-MM-DD HH:mm:ss")}`;
   if(message.author.bot) return;
   if(message.channel.type === "dm") return;
-  const messagestuff = message.content.split(' ').slice(0).join(' ');
+  global.messagestuff = message.content.split(' ').slice(0).join(' ');
   logger.write(`${timestamp} | Channel: ${message.channel.name} | User: ${message.author.username} | Message: ${messagestuff}\n`)
 });
 
@@ -95,22 +36,22 @@ client.on('ready', () => {
       const invite = guildInvites.find(i => ei.get(i.code).uses < i.uses);
       const inviter = client.users.get(invite.inviter.id);
       const logChannel = member.guild.channels.find(channel => channel.name === config.invitechannel);
-      logChannel.send(`${member.user.tag} (ID: ${member.user.id}) joined using invite code ` + "`" + invite.code + "`" + ` from ${inviter.tag} (ID: ${inviter.id}). Invite code has been used ${invite.uses}`);
-      const invite5 = member.guild.roles.find(role => role.id === "614980191881658388");
-      const invite10 = member.guild.roles.find(role => role.id === "614980191101386770");
-      const invite25 = member.guild.roles.find(role => role.id === "614980190048616465");
-      const invite50 = member.guild.roles.find(role => role.id === "614980189314613248");
-      if (invite.uses == 5) return member.guild.members.get(inviter.id).addRole(invite5), client.channels.get("614980252359327744").send(`<@${inviter.id}> just hit 5 invites! Here's a role for you :)`);
-      if (invite.uses == 10) return member.guild.members.get(inviter.id).removeRole(invite5), member.guild.members.get(inviter.id).addRole(invite10), client.channels.get("614980252359327744").send(`<@${inviter.id}> just hit 10 invites! Here's a role for you :)`);;
-      if (invite.uses >= 25) return member.guild.members.get(inviter.id).removeRole(invite10), member.guild.members.get(inviter.id).addRole(invite25), client.channels.get("614980252359327744").send(`<@${inviter.id}> just hit 25 invites! Here's a role for you :)`);;
-      if (invite.uses >= 50) return member.guild.members.get(inviter.id).removeRole(invite25), member.guild.members.get(inviter.id).addRole(invite50), client.channels.get("614980252359327744").send(`<@${inviter.id}> just hit 50 invites! Here's a role for you :)`);;
+      logChannel.send(`${member.user.tag} (ID: ${member.user.id}) joined using invite code ` + "`" + invite.code + "`" + ` from ${inviter.tag} (ID: ${inviter.id}). Invite code has been used ${invite.uses} times.`);
+      const invite5 = member.guild.roles.find(role => role.id === config.invite5);
+      const invite10 = member.guild.roles.find(role => role.id === config.invite10);
+      const invite25 = member.guild.roles.find(role => role.id === config.invite25);
+      const invite50 = member.guild.roles.find(role => role.id === config.invite50);
+      if (invite.uses == 5) return member.guild.members.get(inviter.id).addRole(invite5), client.channels.get(config.inviterewmsg).send(`<@${inviter.id}> just hit 5 invites! Here's a role for you :)`);
+      if (invite.uses == 10) return member.guild.members.get(inviter.id).removeRole(invite5), member.guild.members.get(inviter.id).addRole(invite10), client.channels.get(config.inviterewmsg).send(`<@${inviter.id}> just hit 10 invites! Here's a role for you :)`);;
+      if (invite.uses >= 25) return member.guild.members.get(inviter.id).removeRole(invite10), member.guild.members.get(inviter.id).addRole(invite25), client.channels.get(config.inviterewmsg).send(`<@${inviter.id}> just hit 25 invites! Here's a role for you :)`);;
+      if (invite.uses >= 50) return member.guild.members.get(inviter.id).removeRole(invite25), member.guild.members.get(inviter.id).addRole(invite50), client.channels.get(config.inviterewmsg).send(`<@${inviter.id}> just hit 50 invites! Here's a role for you :)`);;
     });
   });
 
 //Bot kicking if unauth
 client.on('guildMemberAdd', async member => {
 if(member.user.bot){ 
-    console.log(`the bot ${member.user.username} tried to join the server.`)
+    client.channels.get("614980234747576341").send(`Banned <@${member.user.id}> for trying to join without owners permission. :wave:`)
     return member.ban()}
   })
 
@@ -177,11 +118,11 @@ client.on('reconnecting', () => console.log('Got disconnected from discord : Rec
 
 //Event handler
 fs.readdir('./events/', (err, files) => {
-    files = files.filter(f => f.endsWith('.js'));
-    files.forEach(f => {
-        const event = require(`./events/${f}`);
-        client.on(f.split('.')[0], event.bind(null, client));
-        delete require.cache[require.resolve(`./events/${f}`)];
+  files = files.filter(f => f.endsWith('.js'));
+  files.forEach(f => {
+      const event = require(`./events/${f}`);
+      client.on(f.split('.')[0], event.bind(null, client));
+      delete require.cache[require.resolve(`./events/${f}`)];
     });
   });
 
@@ -193,7 +134,7 @@ client.on('message', message => {
     const args = message.content.slice(prefix.length).trim().split(/ +/g);
     const commandargs = message.content.split(' ').slice(1).join(' ');
     const command = args.shift().toLowerCase();
-    console.log(`[${message.guild.name}] [${message.author.username}] >> ${prefix}${command} ${commandargs}`);
+    client.channels.get(config.commandlogs).send(`[${message.author.username}] [${message.author.id}] >> ${prefix}${command} ${commandargs}`);
         try {
             let commandFile = require(`./commands/${command}.js`);
             commandFile.run(client, message, args);

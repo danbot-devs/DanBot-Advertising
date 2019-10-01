@@ -1,53 +1,63 @@
-module.exports = (client, member, guild) => {
+module.exports = async(client, member, guild) => {
     client.channels.get("614980234747576341").send(`Welcome <@${member.user.id}> to DanBot Advertising. Make sure to read <#614980230318391329> for the rules!`)
-      const applyText = (canvas, text) => {
-    const ctx = canvas.getContext('2d');
 
 
-    let fontSize = 70;
+    //Captcha Stuff
+    const captcha = require('svg-captcha');
+    const svg2png = require('svg2png');
 
-    do {
-        ctx.font = `${fontSize -= 10}px sans-serif`;
-    } while (ctx.measureText(text).width > canvas.width - 300);
+    const vcm = member.guild.channels.find(c => c.id === "614980239725953046");
+    let svg = captcha.create({ noise: 0, size: 5, background: '#7289DA', ignoreChars: 'f0o1il' });
+    let pngBuffer = await svg2png(svg.data);
+  
 
-    return ctx.font;
-};
-
-const Canvas = require('canvas');
-const canvas = Canvas.createCanvas(700, 300);
-    const ctx = canvas.getContext('2d');
-   const background = await Canvas.loadImage('https://i.imgur.com/Gl4lfft.png'); 
-    // For setting up the image if you are using glitch you must put the image under in assets and use the link of that image in glitch! Otherwise you a link like so!
-    ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
-
-    ctx.strokeStyle = '#74037b';
-    ctx.strokeRect(0, 0, canvas.width, canvas.height);
-
-    // Slightly smaller text placed above the member's display name
-    ctx.font = '35px sans-serif';
-    ctx.fillStyle = '#ffffff';
-    ctx.fillText('Welcome to the server,', canvas.width / 2.8, canvas.height / 3.9);
-//ctx.fillText(`${guild.name}`, canvas.width / 2.5, canvas.height / 2.5);
-    // Add an exclamation point here and below
-    ctx.font = applyText(canvas, `${member.user.username}!`);
-    ctx.fillStyle = '#ffffff';
-    ctx.fillText(`${member.user.username}!`, canvas.width / 2.5, canvas.height / 1.9);
-    
-    ctx.font = '29px sans-serif';
-    ctx.fillStyle = '#ffffff';
-    ctx.fillText(`We Hope you enjoy your stay :)`, canvas.width / 3.0, canvas.height / 1.3);
-
-    ctx.beginPath();
-    ctx.arc(125, 145, 100, 0, Math.PI * 2, true);
-    ctx.closePath();
-    ctx.clip();
-
-const avatar = await Canvas.loadImage(member.user.displayAvatarURL);
-	ctx.drawImage(avatar, 25, 45, 200, 200);
-
-    
-    const attachment = new Discord.Attachment(canvas.toBuffer(), 'welcome-image.png');
-
-client.channels.get("614980234747576341").send(attachment);
-
+  const filter2 = m => m.author.id === member.id && m.channel.id === "614980239725953046";
+  vcm.send(`<@${member.id}>`, {
+    embed: new Discord.RichEmbed()
+    .setDescription("Hi! This is a captcha to stop raid bots joining. Please type what you see in the captcha below. You have **2** minutes to do this or you will be kicked!")
+    .addField('Your Captcha:', '_ _')
+    .attachFiles([{ attachment: pngBuffer, name: 'captcha.png' }])
+    .setImage('attachment://captcha.png')
+    .setColor("RED")
+  }).then((message2) => {
+    message2.channel.awaitMessages(filter2, {
+        max: 1,
+        time: 120000,
+        errors: ['time'],
+    }).then(async (collected1) => {
+      collected1.delete()
+      message2.delete()
+      message2.channel.fetchMessages({
+        limit: "5",
+       }).then((messages) => {
+        message2.channel.bulkDelete(messages, true).catch(error => console.log(error.stack));
+       })
+      if (collected1.first().content === svg.text) {
+        const autorole = member.guild.roles.find(r => r.name === "Advertiser");
+        const autorole2 = member.guild.roles.find(r => r.name === "Members");
+        const autorole3 = member.guild.roles.find(r => r.name === "Not Verified");
+        const welcome = member.guild.channels.find(c => c.name === "server verification");
+        member.addRole(autorole)
+        member.addRole(autorole2)
+        member.removeRole(autorole3)
+} else {
+member.send("You failed the captcha! Want another go? " + config.invite)
+setTimeout(async () => {
+  await member.kick("Failed the captcha in 2minutes")
+}, 3000);
+}
+  }).catch(async (err) => {
+    if (member.roles.some(r=>["Advertiser"].includes(r.name))) return;
+message2.delete()
+message2.channel.fetchMessages({
+  limit: "5",
+ }).then((messages) => {
+  message2.channel.bulkDelete(messages, true).catch(error => console.log(error.stack));
+ })
+member.send("You failed the captcha! Want another go? " + config.invite)
+setTimeout(async () => {
+ member.kick("Failed the captcha in 2minutes")
+}, 3000);
+})
+});
 }
