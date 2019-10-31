@@ -32,7 +32,7 @@
     "nedb": "^1.8.0",
     "os": "^0.1.1",
     "prettysize": "^2.0.0",
-    "speedtest-net": "^1.5.1",
+    "speedtest-net": "^1.6.0",
     "svg-captcha": "^1.4.0",
     "svg2png": "^4.1.1",
     "systeminformation": "^4.14.11",
